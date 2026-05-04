@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Registration</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 400px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #2a5298;
+      box-shadow: 0 0 5px rgba(42,82,152,0.3);
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row input {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2a5298;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1e3c72;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>🎓 Student Registration</h2>
+
+    <form action="/add-student" method="POST">
+
+      <label>Full Name</label>
+      <input type="text" name="name" placeholder="Enter full name" required>
+
+      <input type="email" name="email" placeholder="Enter email" required>
+
+<input type="tel" name="phone" placeholder="Enter phone"
+       pattern="[0-9]{10}" 
+       title="Enter a valid 10-digit phone number"
+       required>
+
+      <div class="row">
+        <div>
+          <label>Age</label>
+          <input type="number" name="age" required>
+        </div>
+
+        <div>
+          <label>Gender</label>
+          <select name="gender" required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Course</label>
+      <input type="text" name="course" placeholder="e.g. B.Tech" required>
+
+      <label>Address</label>
+      <textarea name="address" placeholder="Enter address"></textarea>
+
+      <button type="submit">Register Student</button>
+
+    </form>
+
+    <div class="footer">Student Management System</div>
+  </div>
+<script>
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", function (e) {
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (!emailRegex.test(email)) {
+      alert("❌ Please enter a valid email address");
+      e.preventDefault();
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      alert("❌ Phone number must be exactly 10 digits");
+      e.preventDefault();
+      return;
+    }
+  });
+</script>
+</body>
+</html>
